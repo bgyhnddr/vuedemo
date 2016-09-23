@@ -90,7 +90,7 @@ export default {
             {
                 returnText= "请填写正确的账号"
             }
-            else if(!this.valid.account)
+            else if(!this.valid.password)
             {
                 returnText="请填写正确的密码"
             }

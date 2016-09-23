@@ -10,7 +10,7 @@
         <!-- For right positioning use slot -->
 
         <dropdown slot="right" v-if="getUser" :text="getUser.name">
-            <li><a @click="logout">登出</a></li>
+            <li><a @click="submitLogout">登出</a></li>
         </dropdown>
         <li v-if="!getUser" slot="right">
             <a @click="showLoginModal">登录</a>
@@ -24,6 +24,7 @@ import { dropdown,navbar }  from 'vue-strap'
 import { getUser } from '../vuex/getters'
 import { showLoginModal,logout } from '../vuex/actions'
 import LoginModal from './LoginModal'
+import authAPI from '../api/auth'
 
 export default { 
     vuex: {
@@ -39,6 +40,14 @@ export default {
         navbar,
         dropdown,
         LoginModal
+    },
+    methods:{
+        submitLogout(){
+            var vm = this;
+            authAPI.logout().then(function(){
+                vm.logout()
+            });
+        }
     } 
 }
 </script>
